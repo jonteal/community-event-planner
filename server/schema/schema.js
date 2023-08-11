@@ -24,9 +24,10 @@ const EventType = new GraphQLObjectType({
     member: {
       type: MemberType,
       resolve(parent, args) {
-        return members.findById(parent.memberId);
+        return Member.findById(parent.memberId);
       },
     },
+    status: { type: GraphQLString },
   }),
 });
 
@@ -181,7 +182,7 @@ const mutation = new GraphQLObjectType({
         },
       },
       resolve(parent, args) {
-        return Project.findByIdAndUpdate(
+        return Event.findByIdAndUpdate(
           args.id,
           {
             $set: {
