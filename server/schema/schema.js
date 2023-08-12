@@ -19,6 +19,7 @@ const EventType = new GraphQLObjectType({
     name: { type: GraphQLString },
     description: { type: GraphQLString },
     location: { type: GraphQLString },
+    date: { type: GraphQLString },
     startingTime: { type: GraphQLString },
     endingTime: { type: GraphQLString },
     member: {
@@ -121,6 +122,7 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLNonNull(GraphQLString) },
         description: { type: GraphQLNonNull(GraphQLString) },
         location: { type: GraphQLNonNull(GraphQLString) },
+        date: { type: GraphQLNonNull(GraphQLString) },
         startingTime: { type: GraphQLNonNull(GraphQLString) },
         endingTime: { type: GraphQLNonNull(GraphQLString) },
         status: {
@@ -142,6 +144,7 @@ const mutation = new GraphQLObjectType({
           description: args.description,
           status: args.status,
           memberId: args.memberId,
+          date: args.date,
           startingTime: args.startingTime,
           endingTime: args.endingTime,
           location: args.location,
@@ -168,6 +171,7 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLString },
         description: { type: GraphQLString },
         location: { type: GraphQLString },
+        date: { type: GraphQLString },
         startingTime: { type: GraphQLString },
         endingTime: { type: GraphQLString },
         status: {
@@ -190,6 +194,7 @@ const mutation = new GraphQLObjectType({
               description: args.description,
               status: args.status,
               location: args.location,
+              date: args.date,
               startingTime: args.startingTime,
               endingTime: args.endingTime,
             },

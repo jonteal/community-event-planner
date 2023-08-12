@@ -5,6 +5,7 @@ const ADD_EVENT = gql`
     $name: String!
     $description: String!
     $location: String!
+    $date: String!
     $startingTime: String!
     $endingTime: String!
     $memberId: ID!
@@ -13,6 +14,7 @@ const ADD_EVENT = gql`
       name: $name
       description: $description
       location: $location
+      date: $date
       startingTime: $startingTime
       endingTime: $endingTime
       memberId: $memberId
@@ -21,6 +23,7 @@ const ADD_EVENT = gql`
       name
       description
       location
+      date
       startingTime
       endingTime
       member {
@@ -45,6 +48,7 @@ const UPDATE_EVENT = gql`
     $name: String!
     $description: String!
     $location: String!
+    $date: String!
     $startingTime: String!
     $endingTime: String!
     $memberId: ID!
@@ -53,6 +57,7 @@ const UPDATE_EVENT = gql`
       name: $name
       description: $description
       location: $location
+      date: $date
       startingTime: $startingTime
       endingTime: $endingTime
       memberId: $memberId
@@ -61,6 +66,7 @@ const UPDATE_EVENT = gql`
       name
       description
       location
+      date
       startingTime
       endingTime
       member {

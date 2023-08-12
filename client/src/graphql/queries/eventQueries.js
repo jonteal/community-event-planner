@@ -7,6 +7,7 @@ const GET_EVENTS = gql`
       name
       description
       location
+      date
       startingTime
       endingTime
       member {
@@ -24,6 +25,7 @@ const GET_EVENT = gql`
       name
       description
       location
+      date
       startingTime
       endingTime
       member {

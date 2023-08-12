@@ -10,6 +10,9 @@ const EventSchema = new mongoose.Schema({
   location: {
     type: String,
   },
+  date: {
+    type: String,
+  },
   startingTime: {
     type: String,
   },

@@ -3,8 +3,11 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GET_EVENTS } from "../../graphql/queries/eventQueries";
 import { GET_MEMBERS } from "../../graphql/queries/memberQueries";
 import { ADD_EVENT } from "../../graphql/mutations/eventMutations";
+import DatePicker from "react-date-picker";
+import "react-date-picker/dist/DatePicker.css";
 
 const CreateEvent = () => {
+  const [date, onChange] = useState(new Date());
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -20,6 +23,7 @@ const CreateEvent = () => {
       startingTime,
       endingTime,
       memberId,
+      date,
     },
     update(cache, { data: { addEvent } }) {
       const { events } = cache.readQuery({ query: GET_EVENTS });
@@ -40,12 +44,21 @@ const CreateEvent = () => {
       location === "" ||
       startingTime === "" ||
       endingTime === "" ||
-      memberId === ""
+      memberId === "" ||
+      date === ""
     ) {
       return alert("Please fill in all fields");
     }
 
-    addEvent(name, description, location, startingTime, endingTime, memberId);
+    addEvent(
+      name,
+      description,
+      location,
+      startingTime,
+      endingTime,
+      memberId,
+      date
+    );
 
     setName("");
     setDescription("");
@@ -53,6 +66,7 @@ const CreateEvent = () => {
     setStartingTime("");
     setEndingTime("");
     setMemberId("");
+    onChange("");
   };
 
   if (loading) return null;
@@ -117,6 +131,11 @@ const CreateEvent = () => {
             type="text"
             className="form-control border rounded-md px-2 py-1"
           />
+
+          <label className="form-label mt-2">Event Date</label>
+          <div className="mb-5 w-max">
+            <DatePicker onChange={onChange} value={date} />
+          </div>
         </div>
 
         <button
