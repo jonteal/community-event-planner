@@ -1,4 +1,9 @@
 import { Link } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { GET_EVENTS } from "../../graphql/queries/eventQueries";
+import EventCard from "../../components/EventCard/EventCard";
+import WeeklyCalendar from "../../components/WeeklyCalendar/WeeklyCalendar";
+
 import "./calendar.css";
 
 const Calendar = () => {
@@ -11,6 +16,11 @@ const Calendar = () => {
     { id: 6, day: "Friday" },
     { id: 7, day: "Saturday" },
   ];
+
+  const { loading, error, data } = useQuery(GET_EVENTS);
+
+  console.log("data: ", data);
+
   return (
     <div className="calendar-main-container">
       <Link
@@ -26,6 +36,11 @@ const Calendar = () => {
             key={day.id}
           >
             <h1 className="bold text-1sxl">{day.day}</h1>
+            <div>
+              {data?.events.map((event) => (
+                <EventCard event={event} key={event?.id} />
+              ))}
+            </div>
           </div>
         ))}
       </div>
